@@ -4,6 +4,7 @@
 #include<qstring.h>
 #include<QMessageBox>
 #include<QCloseEvent>
+#include<networkhost.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -43,6 +44,8 @@ void MainWindow::openFile(QString path)
             file->close();
             delete file;
             delete content;
+            ui->textEdit->setEnabled(true);
+            ui->menuGet_from->setEnabled(true);
         } else {
             QMessageBox::warning(this,"错误","打开文件:" + file->errorString());
             return;
@@ -115,4 +118,28 @@ void MainWindow::on_actionHelp_triggered()
 {
     About *about = new About;
     about->show();
+}
+
+void MainWindow::on_actionNetwork_triggered()
+{
+    NetworkHost *networkHost = new NetworkHost;
+    connect(networkHost,SIGNAL(sendData(QString)), this, SLOT(receiveData(QString)));
+    networkHost->show();
+}
+
+void MainWindow::receiveData(QString data)
+{
+    QString old = ui->textEdit->toPlainText();
+    ui->textEdit->setText(old + "\n\n\n\n" +data);
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QProcess *p = new QProcess;
+    p->start("cmd", QStringList()<<"/c"<<"ipconfig /flushdns");
+    p->waitForStarted();
+    p->waitForFinished();
+    QString strTemp=QString::fromLocal8Bit(p->readAllStandardOutput());
+    p->deleteLater();
+    QMessageBox::information(this, "result",strTemp);
 }

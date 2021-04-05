@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,15 +11,18 @@ CONFIG += c++11
 SOURCES += \
     about.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    networkhost.cpp
 
 HEADERS += \
     about.h \
-    mainwindow.h
+    mainwindow.h \
+    networkhost.h
 
 FORMS += \
     about.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    networkhost.ui
 
 TRANSLATIONS += \
     HostEditor_zh_CN.ts

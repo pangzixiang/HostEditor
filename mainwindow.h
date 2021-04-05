@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <about.h>
+#include<networkhost.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,10 +28,16 @@ private slots:
 
     void on_actionHelp_triggered();
 
+    void on_actionNetwork_triggered();
+
 private:
     Ui::MainWindow *ui;
     void openFile(QString path);
     void saveFile(QString path);
     void closeEvent(QCloseEvent *event);
+
+private slots:
+    void receiveData(QString data);
+    void on_pushButton_4_clicked();
 };
 #endif // MAINWINDOW_H

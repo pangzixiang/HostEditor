@@ -46,10 +46,21 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>Flush DNS</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -93,15 +104,25 @@
      <x>0</x>
      <y>0</y>
      <width>1081</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
      <string>开始</string>
     </property>
+    <widget class="QMenu" name="menuGet_from">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Get from</string>
+     </property>
+     <addaction name="actionNetwork"/>
+    </widget>
     <addaction name="actionOpen"/>
     <addaction name="actionExit"/>
+    <addaction name="menuGet_from"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -126,6 +147,11 @@
   <action name="actionHelp">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionNetwork">
+   <property name="text">
+    <string>Network</string>
    </property>
   </action>
  </widget>
